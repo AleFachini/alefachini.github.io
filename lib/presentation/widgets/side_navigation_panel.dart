@@ -24,7 +24,7 @@ class SideNavigationPanel extends ConsumerWidget {
   static const double _edgeDetectionWidth = 40;
   static const double _panelWidth = 220;
 
-  IconData _iconForSection(PortfolioSection section) {
+  FaIconData _iconForSection(PortfolioSection section) {
     switch (section) {
       case PortfolioSection.hero:
         return FontAwesomeIcons.user;
@@ -113,7 +113,7 @@ class SideNavigationPanel extends ConsumerWidget {
 }
 
 class _NavItem extends StatefulWidget {
-  final IconData icon;
+  final FaIconData icon;
   final String label;
   final bool isActive;
   final VoidCallback onTap;
