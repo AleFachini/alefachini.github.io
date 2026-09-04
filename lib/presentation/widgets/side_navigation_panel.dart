@@ -164,15 +164,19 @@ class _NavItemState extends State<_NavItem> {
                 color: isHighlighted ? primaryColor : Theme.of(context).iconTheme.color,
               ),
               const SizedBox(width: 16),
-              Text(
-                widget.label,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: isHighlighted
-                          ? primaryColor
-                          : Theme.of(context).textTheme.titleMedium?.color,
-                      fontWeight:
-                          widget.isActive ? FontWeight.w700 : FontWeight.w500,
-                    ),
+              Expanded(
+                child: Text(
+                  widget.label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: isHighlighted
+                            ? primaryColor
+                            : Theme.of(context).textTheme.titleMedium?.color,
+                        fontWeight:
+                            widget.isActive ? FontWeight.w700 : FontWeight.w500,
+                      ),
+                ),
               ),
             ],
           ),
