@@ -74,7 +74,7 @@ class RadialMenu extends StatefulWidget {
     this.labelStyle,
     this.iconSize = 20,
     this.rotateLabels = false,
-    this.labelRadiusFactor = 0.62,
+    this.labelRadiusFactor = 0.80,
     this.animationDuration = const Duration(milliseconds: 260),
     this.animationCurve = Curves.easeOut,
     this.originOffset = const Offset(24, 24),
@@ -87,6 +87,7 @@ class RadialMenu extends StatefulWidget {
 class _RadialMenuState extends State<RadialMenu> with TickerProviderStateMixin {
   late List<AnimationController> _controllers;
   int? _activeIndex;
+  Offset? _hoverPosition;
 
   @override
   void initState() {
@@ -181,8 +182,19 @@ class _RadialMenuState extends State<RadialMenu> with TickerProviderStateMixin {
         );
 
         return MouseRegion(
-          onHover: (event) => _setActive(_hitTest(event.localPosition, origin)),
-          onExit: (_) => _setActive(null),
+          onHover: (event) {
+            final index = _hitTest(event.localPosition, origin);
+            _setActive(index);
+            if (index != null) {
+              setState(() => _hoverPosition = event.localPosition);
+            } else {
+              setState(() => _hoverPosition = null);
+            }
+          },
+          onExit: (_) {
+            _setActive(null);
+            setState(() => _hoverPosition = null);
+          },
           child: GestureDetector(
             onTapDown: (details) => _setActive(_hitTest(details.localPosition, origin)),
             onTapUp: (details) {
@@ -215,6 +227,37 @@ class _RadialMenuState extends State<RadialMenu> with TickerProviderStateMixin {
                         ),
                       ),
                       ..._buildLabels(origin),
+                      if (_activeIndex != null && _hoverPosition != null)
+                        Positioned(
+                          left: _hoverPosition!.dx + 15,
+                          top: _hoverPosition!.dy - 35,
+                          child: IgnorePointer(
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.9),
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(color: widget.activeColor.withValues(alpha: 0.5)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withValues(alpha: 0.2),
+                                    blurRadius: 8,
+                                    offset: const Offset(0, 4),
+                                  ),
+                                ],
+                              ),
+                              child: Text(
+                                widget.items[_activeIndex!].label,
+                                style: widget.labelStyle ??
+                                    TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600,
+                                      color: widget.textColor,
+                                    ),
+                              ),
+                            ),
+                          ),
+                        ),
                     ],
                   ),
                 );
@@ -243,41 +286,21 @@ class _RadialMenuState extends State<RadialMenu> with TickerProviderStateMixin {
       final activeTextColor = isSectionActive ? widget.activeColor : widget.textColor;
 
       return Positioned(
-        left: dx - 44,
-        top: dy - 30, // Adjusted top to center the icon better since text might be hidden
-        width: 88,
-        height: 60,
+        left: dx - 20,
+        top: dy - 20,
+        width: 40,
+        height: 40,
         child: IgnorePointer(
           child: Transform.rotate(
             angle: widget.rotateLabels ? -angleRad : 0,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (item.icon != null)
-                  FaIcon(
-                    item.icon, 
-                    size: widget.iconSize, 
-                    color: widget.iconColor ?? activeTextColor
-                  ),
-                if (t > 0.01) ...[
-                  const SizedBox(height: 4),
-                  Opacity(
-                    opacity: t,
-                    child: Text(
-                      item.label,
-                      textAlign: TextAlign.center,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: widget.labelStyle ??
-                          TextStyle(
-                            fontSize: 12, 
-                            fontWeight: isSectionActive ? FontWeight.w800 : FontWeight.w600, 
-                            color: activeTextColor,
-                          ),
-                    ),
-                  ),
-                ],
-              ],
+            child: Center(
+              child: item.icon != null
+                  ? FaIcon(
+                      item.icon,
+                      size: widget.iconSize,
+                      color: widget.iconColor ?? activeTextColor,
+                    )
+                  : null,
             ),
           ),
         ),

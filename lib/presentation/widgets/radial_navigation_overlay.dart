@@ -74,10 +74,10 @@ class RadialNavigationOverlay extends ConsumerWidget {
               originOffset: const Offset(20, 20),
               baseRadius: 100,
               activeRadius: 150,
-              gapDegrees: 4,
+              gapDegrees: 6,
               cornerRadius: 12,
               startAngleDeg: 10,
-              totalSpanDeg: 70,
+              totalSpanDeg: 90,
               items: PortfolioSection.values.map((section) {
                 final isActive = section == activeSection;
                 return RadialMenuItem(
