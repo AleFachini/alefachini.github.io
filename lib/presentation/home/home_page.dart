@@ -8,12 +8,12 @@ import '../widgets/contact_section.dart';
 import '../widgets/hero_section.dart';
 import '../widgets/projects_section.dart';
 import '../widgets/section_wrapper.dart';
-import '../widgets/side_navigation_panel.dart';
+import '../widgets/radial_navigation_overlay.dart';
 
 /// The main portfolio page.
 ///
 /// A single scrollable page containing all sections (Hero, Projects,
-/// Certificates, Contact) with a side navigation panel overlay.
+/// Certificates, Contact) with a radial navigation overlay.
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
@@ -123,8 +123,8 @@ class _HomePageState extends ConsumerState<HomePage> {
             ),
           ),
 
-          // Side navigation overlay.
-          SideNavigationPanel(
+          // Radial navigation overlay.
+          RadialNavigationOverlay(
             onSectionTap: _scrollToSection,
           ),
         ],
