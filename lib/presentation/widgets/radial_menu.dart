@@ -241,36 +241,43 @@ class _RadialMenuState extends State<RadialMenu> with TickerProviderStateMixin {
       final dy = origin.dy - labelRadius * math.sin(angleRad);
       
       final activeTextColor = isSectionActive ? widget.activeColor : widget.textColor;
-      // Also fade in labels if they are active, or partially show them
-      // We will make them always fully visible when expanded, or partially visible.
-      // But the original code used `opacity: t`. We can use `opacity: math.max(t, isSectionActive ? 1.0 : 0.5)` so labels are readable.
-      final opacity = math.max(t, isSectionActive ? 1.0 : 0.7);
 
       return Positioned(
         left: dx - 44,
-        top: dy - 22,
+        top: dy - 30, // Adjusted top to center the icon better since text might be hidden
         width: 88,
-        height: 44,
+        height: 60,
         child: IgnorePointer(
-          child: Opacity(
-            opacity: opacity,
-            child: Transform.rotate(
-              angle: widget.rotateLabels ? -angleRad : 0,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (item.icon != null)
-                    FaIcon(item.icon, size: widget.iconSize, color: widget.iconColor ?? activeTextColor),
-                  Text(
-                    item.label,
-                    textAlign: TextAlign.center,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: widget.labelStyle ??
-                        TextStyle(fontSize: 12, fontWeight: isSectionActive ? FontWeight.w800 : FontWeight.w600, color: activeTextColor),
+          child: Transform.rotate(
+            angle: widget.rotateLabels ? -angleRad : 0,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (item.icon != null)
+                  FaIcon(
+                    item.icon, 
+                    size: widget.iconSize, 
+                    color: widget.iconColor ?? activeTextColor
+                  ),
+                if (t > 0.01) ...[
+                  const SizedBox(height: 4),
+                  Opacity(
+                    opacity: t,
+                    child: Text(
+                      item.label,
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: widget.labelStyle ??
+                          TextStyle(
+                            fontSize: 12, 
+                            fontWeight: isSectionActive ? FontWeight.w800 : FontWeight.w600, 
+                            color: activeTextColor,
+                          ),
+                    ),
                   ),
                 ],
-              ),
+              ],
             ),
           ),
         ),
