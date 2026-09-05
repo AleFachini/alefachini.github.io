@@ -346,7 +346,7 @@ class _RadialMenuPainter extends CustomPainter {
       
       final radius = baseRadius + (activeRadius - baseRadius) * effectiveT;
       
-      final baseColorForSlice = isSectionActive ? activeColor.withValues(alpha: 0.7) : baseColor;
+      final baseColorForSlice = isSectionActive ? Color.lerp(baseColor, activeColor, 0.5)! : baseColor;
       final color = Color.lerp(baseColorForSlice, items[i].color ?? activeColor, t) ?? baseColorForSlice;
       
       final angleRad = angleCenterDeg(i) * math.pi / 180;
