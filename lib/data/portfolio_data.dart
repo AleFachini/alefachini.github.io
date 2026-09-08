@@ -32,11 +32,101 @@ class ProfileData {
 /// 3. To embed a YouTube video, set [youtubeVideoId] to the 11-char video ID.
 const List<ProjectModel> projects = [
   ProjectModel(
-    name: 'Example App',
+    name: 'OrderFast',
     description:
-        'A sample production app showcasing Flutter capabilities. Replace this with your real project.',
-    technologies: ['Flutter', 'Firebase', 'Riverpod'],
-    youtubeVideoId: null, // e.g., 'dQw4w9WgXcQ'
+        'Full-stack food-ordering and self-service management platform, including a dashboard, mobile app, and embedded software for self-service totems.',
+    technologies: ['React', 'Supabase', 'PostgreSQL', 'Flutter', 'AI-Native Tools'],
+    youtubeVideoId: null,
+    storeUrl: null,
+    websiteUrl: null,
+  ),
+  ProjectModel(
+    name: 'ITTI',
+    description:
+        'Enterprise Flutter applications including Ueno Bank and the ITTI Design System. Spearheaded architecture design, CI/CD pipelines, and AI-integrated workflows.',
+    technologies: ['Flutter', 'CI/CD', 'Cursor', 'Google Antigravity'],
+    youtubeVideoId: null,
+    storeUrl: null,
+    websiteUrl: null,
+  ),
+  ProjectModel(
+    name: 'Código del Sur',
+    description:
+        'Delivered critical, high-quality features for client applications under aggressive timelines.',
+    technologies: ['Flutter', 'BLoC', 'Deep Linking'],
+    youtubeVideoId: null,
+    storeUrl: null,
+    websiteUrl: null,
+  ),
+  ProjectModel(
+    name: 'Fudo - Deli',
+    description:
+        'Engineered mobile (Android & iOS) and SmartPOS restaurant applications.',
+    technologies: ['Flutter'],
+    youtubeVideoId: null,
+    storeUrl: null,
+    websiteUrl: null,
+  ),
+  ProjectModel(
+    name: 'Svitla Systems - Video Module',
+    description:
+        'Web-first application featuring multiple HLS (m3u8) video players with a multithreaded design for improved video performance.',
+    technologies: ['Flutter', 'HLS Video Streaming', 'WebRTC'],
+    youtubeVideoId: null,
+    storeUrl: null,
+    websiteUrl: null,
+  ),
+  ProjectModel(
+    name: 'Independent / Freelance Projects',
+    description:
+        'Dynamic horse-racing language-learning game and interactive trivia. Built a Windows desktop application for creating customizable presentation software (like PowerPoint) with video calling.',
+    technologies: ['Flutter Flame Engine', 'WebRTC', 'Firebase', 'Windows Desktop'],
+    youtubeVideoId: null,
+    storeUrl: null,
+    websiteUrl: null,
+  ),
+  ProjectModel(
+    name: 'CloudX',
+    description:
+        'Large-scale migration of a major fintech application from native iOS/Android to Flutter, implementing MVC architecture and hybrid navigation.',
+    technologies: ['Flutter', 'MVC', 'Provider', 'Android', 'Kotlin', 'iOS', 'Swift'],
+    youtubeVideoId: null,
+    storeUrl: null,
+    websiteUrl: null,
+  ),
+  ProjectModel(
+    name: 'Xseed',
+    description:
+        'Native SDK for Augmented Reality (AR) floor-plan generation exposed to Flutter via method channels, and a comprehensive data-collection app.',
+    technologies: ['Kotlin', 'Swift', 'Flutter', 'AR', 'CI/CD'],
+    youtubeVideoId: null,
+    storeUrl: null,
+    websiteUrl: null,
+  ),
+  ProjectModel(
+    name: 'SimTlix Intive',
+    description:
+        'Digital wallet within a primary banking application with secure API integrations and deep-linked transactions.',
+    technologies: ['Flutter', 'Provider', 'GetX', 'Java', 'Spring Boot', 'MySQL'],
+    youtubeVideoId: null,
+    storeUrl: null,
+    websiteUrl: null,
+  ),
+  ProjectModel(
+    name: 'Baufest',
+    description:
+        'Data-survey application for mobile and tablet with offline-first capabilities and automatic backend synchronization.',
+    technologies: ['Java', 'Spring Boot', 'SQL'],
+    youtubeVideoId: null,
+    storeUrl: null,
+    websiteUrl: null,
+  ),
+  ProjectModel(
+    name: 'Feas Electrónica',
+    description:
+        'Developed and optimized Real-Time Operating Systems (RTOS) and embedded software solutions.',
+    technologies: ['C/C++', 'RTOS'],
+    youtubeVideoId: null,
     storeUrl: null,
     websiteUrl: null,
   ),
