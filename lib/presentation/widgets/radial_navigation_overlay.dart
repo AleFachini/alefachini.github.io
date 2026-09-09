@@ -56,6 +56,39 @@ class RadialNavigationOverlay extends ConsumerWidget {
           ),
         ),
 
+        // Visual "NAV" Indicator tab.
+        Positioned(
+          left: 0,
+          bottom: 190,
+          child: IgnorePointer(
+            child: AnimatedOpacity(
+              duration: const Duration(milliseconds: 300),
+              opacity: isVisible ? 0.1 : 1.0,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 20),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.primary.withValues(alpha: 0.8),
+                  borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(8),
+                    bottomRight: Radius.circular(8),
+                  ),
+                ),
+                child: RotatedBox(
+                  quarterTurns: 3,
+                  child: Text(
+                    'NAV',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 2,
+                      color: theme.colorScheme.onPrimary,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+
         // The actual slide-in radial menu.
         AnimatedPositioned(
           duration: const Duration(milliseconds: 300),
